@@ -1,5 +1,9 @@
 {
-  "devDependencies": {
-    "prettier": "2.7.1"
-  }
+    "devDependencies": {
+        "gh-pages": "^4.0.0",
+        "prettier": "2.7.1"
+    },
+    "scripts": {
+        "deploy": "npm run build && gh-pages -d dist"
+    }
 }
