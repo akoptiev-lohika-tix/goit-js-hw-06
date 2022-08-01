@@ -13,17 +13,13 @@ const inputNumberOfBoxes = document.querySelector('input');
 const addBoxesButton = document.querySelector('[data-create]');
 const removeBoxesButton = document.querySelector('[data-destroy]');
 
+let boxHeight = 30;
+let boxWidth = 30;
+
 const createBoxes = (amount) => {
     const boxesCollection = [];
-    let boxHeight = 30;
-    let boxWidth = 30;
 
     for (let i = 0; i < amount; i++) {
-        if (i >= 1) {
-            boxHeight += 10;
-            boxWidth += 10;
-        }
-
         const box = document.createElement('div');
         box.textContent = String(i + 1);
         box.style.height = boxHeight + 'px';
@@ -33,6 +29,9 @@ const createBoxes = (amount) => {
         box.style.alignContent = 'center';
         box.style.backgroundColor = getRandomHexColor();
         boxesCollection.push(box);
+
+        boxHeight += 10;
+        boxWidth += 10;
     }
 
     boxes.append(...boxesCollection);
@@ -56,7 +55,11 @@ const handleAddBoxes = () => {
     inputNumberOfBoxes.value = '';
 };
 
-const handleRemoveBoxes = () => (boxes.innerHTML = '');
+const handleRemoveBoxes = () => {
+    boxes.innerHTML = '';
+    boxHeight = 30;
+    boxWidth = 30;
+};
 
 addBoxesButton.addEventListener('click', handleAddBoxes);
 removeBoxesButton.addEventListener('click', handleRemoveBoxes);
